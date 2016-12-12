@@ -1,0 +1,4 @@
+<launch>
+    <param name="angular_s" type="string" value="$(arg str)" />
+    <node name="calibrate2" pkg="calibrate2" type="calibrate2" output="screen"/>
+</launch>
