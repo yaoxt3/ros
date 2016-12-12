@@ -1,0 +1,16 @@
+<launch>
+		<param name="test_distance" type="double" value="$(arg a)" />
+
+		<param name="speed" type="double" value="$(arg b)" />
+
+		<param name="tolerance" type="double" value="$(arg c)" />
+
+		<param name="odom_linear_scale_correction" type="double" value="$(arg d)"/>
+
+		<param name="pid" type="string" value="$(arg pid)"/>
+
+		<param name="base_params" type="string" value="$(arg base)" />
+		
+		<node name="calibrate" pkg="calibrate" type="calibrate" output="screen"/>
+		
+</launch>

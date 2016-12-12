@@ -1,0 +1,5 @@
+<launch>
+	<param name="port_name" type="string" value="/dev/ttyUSB0" />
+	<param name="baud_rate" type="int" value="115200" />
+	<node name="base_controller" pkg="base_controller" type="base_controller" output="screen"/>
+</launch>

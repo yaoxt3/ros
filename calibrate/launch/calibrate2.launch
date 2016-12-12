@@ -1,0 +1,3 @@
+<launch>
+	<node name="calibrate" pkg="calibrate" type="calibrate" output="screen"/>
+</launch>

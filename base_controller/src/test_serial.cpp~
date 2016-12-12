@@ -1,0 +1,10 @@
+#include <stdio.h>
+#include "Serial.h"
+
+using namespace NS_Navigation ;
+
+int main(int argc,char** argv){
+	Serial* serial = new Serial() ;
+	delete serial ;
+	return 0 ;
+}
