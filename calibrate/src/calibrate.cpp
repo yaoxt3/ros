@@ -39,11 +39,13 @@ private:
 	ros::Publisher twist_pub;
 	ros::Publisher string_pub;
 	ros::Publisher base_params_pub;
+	ros::Publisher base_rst_pub;
 	ros::NodeHandle nh;
 	ros::Rate loop_rate;
 	geometry_msgs::Twist move_cmd;
 	std_msgs::String string_msg;
 	std_msgs::String base_string_msg;
+	std_msgs::String base_rst_msg;
 };
 
 
@@ -67,7 +69,7 @@ Calibrate::Calibrate():
 					   speed(0.15),
 					   tolerance(0.01),
 					   odom_linear_scale_correction(1.0),
-					   loop_rate(10)
+					   loop_rate(30)
 {
 	ros::param::get("test_distance",test_distance);
 	ros::param::get("speed",speed);
@@ -81,6 +83,15 @@ Calibrate::Calibrate():
 	cout<<"odom_linear_scale_correction:"<<odom_linear_scale_correction<<endl;
 	cout<<"pid:"<<pid<<endl;
 	cout<<"base_params:"<<base_params<<endl;
+
+	// Reset the odometry data
+        base_rst_pub = nh.advertise<std_msgs::String>("Reset",10);
+        base_rst_msg.data = "1";
+	cout<<base_rst_msg.data<<endl;
+
+	int ii=100;
+        while(ii-->0) base_rst_pub.publish(base_rst_msg);
+	cout<<"reset end"<<endl;
 
 	controller_sub = nh.subscribe("odom",10,&Calibrate::Callback,this);
 	twist_pub = nh.advertise<geometry_msgs::Twist>("Twist",10);
